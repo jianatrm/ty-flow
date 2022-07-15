@@ -1,0 +1,77 @@
+<template>
+
+  <HelloWorld></HelloWorld>
+</template>
+
+<script setup>
+import HelloWorld from "./components/HelloWorld.vue";
+</script>
+
+
+<style>
+#app{
+  width: 100%;
+  height: 100vh;
+}
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 1px solid #dfe3e8;
+}
+
+#stencil {
+  width: 180px;
+  height: 100%;
+  position: relative;
+  border-right: 1px solid #dfe3e8;
+}
+
+#graph-container {
+  width: calc(100% - 180px);
+  height: 100%;
+}
+
+.x6-widget-stencil {
+  background-color: #fff;
+}
+
+.x6-widget-stencil-title {
+  background-color: #fff;
+}
+
+.x6-widget-stencil-group-title {
+  background-color: #fff !important;
+  display: none;
+}
+
+.x6-widget-transform {
+  margin: -1px 0 0 -1px;
+  padding: 0px;
+  border: 1px solid #239edd;
+}
+
+.x6-widget-transform > div {
+  border: 1px solid #239edd;
+}
+
+.x6-widget-transform > div:hover {
+  background-color: #3dafe4;
+}
+
+.x6-widget-transform-active-handle {
+  background-color: #3dafe4;
+}
+
+.x6-widget-transform-resize {
+  border-radius: 0;
+}
+
+.x6-widget-selection-inner {
+  border: 1px solid #239edd;
+}
+
+.x6-widget-selection-box {
+  opacity: 0;
+}
+</style>
