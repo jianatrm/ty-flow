@@ -7,11 +7,11 @@ import registerSubProcess from './subProcess'
 import registerImgNode from './start'
 
 export default function(G6){
-  // registerAnchor(G6);
-  // registerControlPoint(G6);
-  // registerNode(G6);
-  // registerFlowNode(G6);
-  // registerEdge(G6);
-  // registerSubProcess(G6)
+  registerAnchor(G6);
+  registerControlPoint(G6);
+  registerNode(G6);
+  registerFlowNode(G6);
+  registerEdge(G6);
+  registerSubProcess(G6)
   registerImgNode(G6)
 }

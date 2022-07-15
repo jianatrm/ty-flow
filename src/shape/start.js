@@ -31,16 +31,28 @@ const nodeDefinition = {
     },
     drawShape: function drawShape(cfg, group) {
         let style = this.getShapeStyle(cfg);
-        const shape = group.addShape('image', {
+        const shape = group.addShape('circle', {
             attrs: {
                 x: 0,
                 y: 0,
-                height: 60,
-                width: 60,
-                img: ICON_MAP['a'],
-                ...style,
+                r:40,
+                stroke: '#F5C277',
+                fill:'#FDF3EB',
             },
-            name: 'img-node',
+
+            name: 'circle-node',
+        });
+        group.addShape('text', {
+            attrs: {
+                x: 0, // 居中
+                y: 0,
+                textAlign: 'center',
+                textBaseline: 'middle',
+                text: cfg.text,
+                fill: '#585552',
+                fontSize:12
+            },
+            name: 'text-shape',
         });
         this.initAnchor(group);
         return shape;
@@ -56,9 +68,9 @@ const nodeDefinition = {
         } else if (name === 'selected') {
             const rect = group.getChildByIndex(0);
             if (value) {
-                // rect.attr('fill', this.options.stateStyles.selected.fill);
+                rect.attr('fill', this.options.stateStyles.selected.fill);
             } else {
-                // rect.attr('fill', this.options.style.fill);
+                rect.attr('fill', this.options.style.fill);
             }
         } else if (name === 'hover') {
             const rect = group.getChildByIndex(0);
@@ -87,7 +99,6 @@ const nodeDefinition = {
         ]
     },
     drawAnchor(group) {
-        debugger
         const bbox = group.get('children')[0].getBBox();
         this.getAnchorPoints().forEach((p, i) => {
             const anchorContainer = group.addGroup();
@@ -132,5 +143,5 @@ const nodeDefinition = {
 }
 
 export default function (G6) {
-    G6.registerNode('img-node', nodeDefinition, 'single-node');
+    G6.registerNode('ty-start-node', nodeDefinition, 'circle');
 }

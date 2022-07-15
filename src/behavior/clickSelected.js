@@ -2,7 +2,7 @@ export default function(G6){
   G6.registerBehavior('clickSelected', {
     getDefaultCfg() {
       return {
-        multiple: false,
+        multiple: true,
       }
     },
     getEvents() {
@@ -11,7 +11,7 @@ export default function(G6){
         'edge:click': 'onClick',
         'edge:mouseover': 'onEdgeMouseOver',
         'edge:mouseleave': 'onEdgeMouseLeave',
-        'canvas:click': 'onCanvasClick',
+        // 'canvas:click': 'onCanvasClick',
         'node:mouseover': 'onNodeMouseOver',
       }
     },
@@ -40,6 +40,7 @@ export default function(G6){
         this.graph.setItemState(e.item, 'hover', false);
     },
     onCanvasClick(){
+      debugger
       this._clearSelected();
       this.graph.emit('afteritemselected',[]);
     },
