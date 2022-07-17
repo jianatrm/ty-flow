@@ -56,9 +56,7 @@ const nodeDefinition = {
   },
   initAnchor(group){
     group.anchorShapes = [];
-    debugger
     group.showAnchor = () => {
-      debugger
       this.drawAnchor(group);
     };
     group.getAllAnchors = () => {

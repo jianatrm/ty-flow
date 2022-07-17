@@ -1,5 +1,6 @@
 <script setup>
-import ItemPanel from './itemPanel.vue'
+import ItemPanel from './ItemPanel.vue'
+import DetailPanel from './DetailPanel'
 import {onMounted, ref,reactive } from 'vue'
 import G6,{Graph}from "@antv/g6";
 import Command from "../plugins/command";
@@ -66,7 +67,7 @@ const props = defineProps({
 const canvasRef = ref(null)
 const toolbarRef = ref(null)
 const addItemPanelRef = ref(null)
-const graph = ref({})
+const graphInstance = ref({})
 const state = reactive({
   resizeFunc: ()=>{},
   selectedModel: {},
@@ -112,33 +113,36 @@ const init = ()=>{
   let plugins = [];
   const cmdPlugin = new Command();
   const toolbar = new Toolbar({container:toolbarRef.value});
-  const addItemPanel = new AddItemPanel({container:addItemPanelRef.value});
+  const addItemPanel = new AddItemPanel({container:addItemPanelRef.value.$el});
   const canvasPanel = new CanvasPanel({container:canvasRef.value});
   console.log('canvasRef.value',canvasRef.value)
   plugins = [ cmdPlugin,toolbar,addItemPanel,canvasPanel ];
   const width = canvasRef.value.offsetWidth;
   const graph = new G6.Graph({
-    // plugins: plugins,
+    plugins: plugins,
     container: 'container',
     height: 800,
     width: 800,
     modes: {
       default: ['drag-canvas', 'clickSelected','drag-node'],
       view: [],
-      edit: [ 'drag-canvas','clickSelected', 'hover-node','dragNode','dragEdge', 'clickSelected','deleteItem','itemAlign','dragPoint','brush-select'],
+      edit: [ 'drag-canvas','clickSelected', 'hover-node',
+        'hoverAnchorActived','dragNode','dragEdge',
+        'dragPanelItemAddNode','clickSelected',
+        'deleteItem','itemAlign','dragPoint','brush-select','dragPoint'],
     },
     defaultNode:{
       type:'ty-start-node'
     }
   });
-  graph.saveXML = (createFile = true) => exportXML(state.graph.save(),state.processModel,createFile);
+  graph.saveXML = (createFile = true) => exportXML(graph.save(),state.processModel,createFile);
   graph.saveImg = (createFile = true) => exportImg(canvasRef.value,state.processModel.name,createFile);
-
+  graphInstance.value = graph
  graph.setMode(props.mode);
   // state.graph.data(initShape(props.data));
   graph.data(data);
   graph.render();
-  // initEvents();
+  initEvents();
 }
 const initShape = (data)=>{
   if(data && data.nodes){
@@ -157,9 +161,9 @@ const initShape = (data)=>{
 
 
 const initEvents = ()=>{
-  state.graph.on('afteritemselected',(items)=>{
+  graphInstance.value.on('afteritemselected',(items)=>{
     if(items && items.length > 0) {
-      let item = state.graph.findById(items[0]);
+      let item = graphInstance.value.findById(items[0]);
       if(!item){
         item = getNodeInSubProcess(items[0])
       }
@@ -169,18 +173,14 @@ const initEvents = ()=>{
     }
   });
   const page =canvasRef.value;
-  const graph = state.graph;
   const height = state.height-1;
   state.resizeFunc = ()=>{
-    graph.changeSize(page.offsetWidth,height);
+    graphInstance.value.changeSize(page.offsetWidth,height);
   };
   window.addEventListener("resize", state.resizeFunc);
-  state.graph.on('canvas:click',()=>{
-    alert(1)
-  })
 }
 const getNodeInSubProcess = (itemId) =>{
-  const subProcess = state.graph.find('node', (node) => {
+  const subProcess = graphInstance.value.find('node', (node) => {
     if (node.get('model')) {
       const clazz = node.get('model').clazz;
       if (clazz === 'subProcess') {
@@ -223,7 +223,7 @@ const getNodeInSubProcess = (itemId) =>{
 <!--             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iNTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxyZWN0IGlkPSJiIiB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iNDgiIHJ4PSIyNCIvPjxmaWx0ZXIgeD0iLTguOCUiIHk9Ii0xMC40JSIgd2lkdGg9IjExNy41JSIgaGVpZ2h0PSIxMjkuMiUiIGZpbHRlclVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgaWQ9ImEiPjxmZU9mZnNldCBkeT0iMiIgaW49IlNvdXJjZUFscGhhIiByZXN1bHQ9InNoYWRvd09mZnNldE91dGVyMSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjIiIGluPSJzaGFkb3dPZmZzZXRPdXRlcjEiIHJlc3VsdD0ic2hhZG93Qmx1ck91dGVyMSIvPjxmZUNvbXBvc2l0ZSBpbj0ic2hhZG93Qmx1ck91dGVyMSIgaW4yPSJTb3VyY2VBbHBoYSIgb3BlcmF0b3I9Im91dCIgcmVzdWx0PSJzaGFkb3dCbHVyT3V0ZXIxIi8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjA0IDAiIGluPSJzaGFkb3dCbHVyT3V0ZXIxIi8+PC9maWx0ZXI+PC9kZWZzPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNCAyKSI+PHVzZSBmaWxsPSIjMDAwIiBmaWx0ZXI9InVybCgjYSkiIHhsaW5rOmhyZWY9IiNiIi8+PHVzZSBmaWxsLW9wYWNpdHk9Ii45MiIgZmlsbD0iI0Y5RjBGRiIgeGxpbms6aHJlZj0iI2IiLz48cmVjdCBzdHJva2U9IiNCMzdGRUIiIHg9Ii41IiB5PSIuNSIgd2lkdGg9Ijc5IiBoZWlnaHQ9IjQ3IiByeD0iMjMuNSIvPjwvZz48dGV4dCBmb250LWZhbWlseT0iUGluZ0ZhbmdTQy1SZWd1bGFyLCBQaW5nRmFuZyBTQyIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIuNjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQgMikiPjx0c3BhbiB4PSIyNCIgeT0iMjkiPk1vZGVsPC90c3Bhbj48L3RleHQ+PC9nPjwvc3ZnPg=="-->
 <!--             alt="flow-capsule" draggable="true" data-item="{clazz:'start3',size:'30*30',label:''}"></div>-->
 <!--       </div>-->
-       <ItemPanel></ItemPanel>
+       <ItemPanel ref="addItemPanelRef"></ItemPanel>
      </div>
      <div class="col col-16">
        <div id="container" ref="canvasRef"/>

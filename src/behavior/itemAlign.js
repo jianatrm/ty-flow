@@ -1,7 +1,8 @@
 import { each } from '@antv/util';
 import { vec2 } from '@antv/matrix-util';
+import mix from '@antv/util/lib/mix';
 export default function(G6){
-  const {mix} = G6.Util;
+
   G6.registerBehavior('itemAlign', {
     getDefaultCfg() {
       return {

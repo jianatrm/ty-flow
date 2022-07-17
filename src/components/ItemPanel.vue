@@ -1,7 +1,7 @@
 <template>
-    <div class="itemPanel" :style="{'height': height+'px'}">
-        <div >
-            <div :title="i18n['start']" name="1">
+    <div class="itemPanel" :style="{'height': props.height+'px'}">
+        <div  class="el-collapse-item">
+            <div class="el-collapse-item__wrap" :title="i18n['start']" name="1">
                 <img data-item="{clazz:'start',size:'30*30',label:''}"
                      :src="getUrl('../assets/flow/start.svg')" style="width:42px;height:42px" />
                 <div>{{i18n['startEvent']}}</div>
@@ -15,7 +15,7 @@
                      :src="getUrl('../assets/flow/signal-start.svg')" style="width:42px;height:42px" />
                 <div>{{i18n['signalEvent']}}</div>
             </div>
-            <div :title="i18n['task']" name="2">
+            <div class="el-collapse-item__wrap" :title="i18n['task']" name="2">
                 <img :data-item="userTaskData"
                      :src="getUrl('../assets/flow/user-task.svg')" style="width:80px;height:44px" />
                 <div>{{i18n['userTask']}}</div>
@@ -63,9 +63,9 @@
     </div>
 </template>
 <script setup>
-import {reactive} from "vue";
+import {reactive,toRefs} from "vue";
 const i18n = {}
-defineProps({
+const props = defineProps({
   height: {
     type: Number,
     default: 800,
@@ -82,6 +82,7 @@ const state = reactive({
   mailTaskData: "{clazz:'mailTask',size:'80*44',label:'"+i18n['mailTask']+"'}",
   receiveTaskData: "{clazz:'receiveTask',size:'80*44',label:'"+i18n['receiveTask']+"'}",
 })
+const {activeNames,userTaskData,scriptTaskData,javaTaskData,mailTaskData,receiveTaskData} = toRefs(state)
   // export default {
   //   inject: ['i18n'],
   //   props: {
