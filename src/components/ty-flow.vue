@@ -167,7 +167,29 @@ const getNodeInSubProcess = (itemId) =>{
   }
   return null;
 }
-
+const  onItemCfgChange =(key,value)=>{
+  console.log('onItemCfgChange')
+  const items =  graphInstance.value.get('selectedItems');
+  if(items && items.length > 0){
+    let item =  graphInstance.value.findById(items[0]);
+    if(!item){
+      item = getNodeInSubProcess(items[0])
+    }
+    if( graphInstance.value.executeCommand) {
+      graphInstance.value.executeCommand('update', {
+        itemId: items[0],
+        updateModel: {[key]: value}
+      });
+    }else {
+      graphInstance.value.updateItem(item, {[key]: value});
+    }
+    state.selectedModel = {...item.getModel()};
+  } else {
+    const canvasModel = { ...state.processModel, [key]: value};
+    state.selectedModel = canvasModel;
+    state.processModel = canvasModel;
+  }
+}
 </script>
 
 <template>

@@ -1,24 +1,24 @@
 <template>
     <div :data-clazz="model.clazz">
-        <div class="panelTitle">{{$t['userTask']}}</div>
+        <div class="panelTitle">{{$t('userTask')}}</div>
         <div class="panelBody">
             <DefaultDetail :model="model" :onChange="onChange" :readOnly="readOnly" />
             <div class="panelRow">
-                <div>{{$t['userTask.assignType']}}：</div>
+                <div>{{$t('userTask.assignType')}}：</div>
                 <el-select style="width:90%; font-size: 12px"
-                           :placeholder="$t['userTask.assignType.placeholder']"
+                           :placeholder="$t('userTask.assignType.placeholder')"
                            :value="model.assignType"
                            :disabled="readOnly"
                            @change="(e) => { onChange('assignValue', []);onChange('assignType', e) }">
-                    <el-option key="assignee" value="assignee" :label="$t['userTask.assignType.assignee']"/>
-                    <el-option key="person" value="person" :label="$t['userTask.assignType.person']"/>
-                    <el-option key="persongroup" value="persongroup" :label="$t['userTask.assignType.persongroup']"/>
+                    <el-option key="assignee" value="assignee" :label="$t('userTask.assignType.assignee')"/>
+                    <el-option key="person" value="person" :label="$t('userTask.assignType.person')"/>
+                    <el-option key="persongroup" value="persongroup" :label="$t('userTask.assignType.persongroup')"/>
                 </el-select>
             </div>
             <div v-if="model.assignType === 'assignee'" class="panelRow">
-                <div>{{$t['userTask.assignType.assignee.title']}}：</div>
+                <div>{{$t('userTask.assignType.assignee.title')}}：</div>
                 <el-select style="width:90%; font-size:12px"
-                           :placeholder="$t['userTask.assignType.assignee.placeholder']"
+                           :placeholder="$t('userTask.assignType.assignee.placeholder')"
                            :disabled="readOnly"
                            :value="model.assignValue"
                            :multiple="true"
@@ -31,9 +31,9 @@
                 </el-select>
             </div>
             <div v-if="model.assignType === 'person'" class="panelRow">
-                <div>{{$t['userTask.assignType.person.title']}}：</div>
+                <div>{{$t('userTask.assignType.person.title')}}：</div>
                 <el-select style="width:90%; font-size:12px"
-                           :placeholder="$t['userTask.assignType.person.placeholder']"
+                           :placeholder="$t('userTask.assignType.person.placeholder')"
                            :disabled="readOnly"
                            :value="model.assignValue"
                            :multiple="true"
@@ -45,9 +45,9 @@
                 </el-select>
             </div>
             <div v-else-if="model.assignType === 'persongroup'" class="panelRow">
-                <div>{{$t['userTask.assignType.persongroup.title']}}：</div>
+                <div>{{$t('userTask.assignType.persongroup.title')}}：</div>
                 <el-select style="width:90%; font-size:12px"
-                           :placeholder="$t['userTask.assignType.persongroup.placeholder']"
+                           :placeholder="$t('userTask.assignType.persongroup.placeholder')"
                            :value="model.assignValue"
                            :disabled="readOnly"
                            :multiple="true"
@@ -59,10 +59,10 @@
                 </el-select>
             </div>
             <div class="panelRow">
-                <div style="display:inline">{{$t['userTask.dueDate']}}：</div>
+                <div style="display:inline">{{$t('userTask.dueDate')}}：</div>
                 <el-date-picker type="datetime"
                                 style="width:90%; min-width:null"
-                                :placeholder="$t['userTask.dueDate.placeholder']"
+                                :placeholder="$t('userTask.dueDate.placeholder')"
                                 :disabled="readOnly"
                                 :value="model.dueDate"
                                 value-format="yyyy-MM-dd HH:mm:ss"
@@ -71,7 +71,7 @@
             <div class="panelRow">
                 <el-checkbox @change="(value) => onChange('isSequential', value)"
                              :disabled="readOnly"
-                             :value="!!model.isSequential">{{$t['userTask.counterSign']}}</el-checkbox>
+                             :value="!!model.isSequential">{{$t('userTask.counterSign')}}</el-checkbox>
             </div>
         </div>
     </div>
