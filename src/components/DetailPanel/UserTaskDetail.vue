@@ -61,7 +61,7 @@
             <div class="panelRow">
                 <div style="display:inline">{{$t('userTask.dueDate')}}：</div>
                 <el-date-picker type="datetime"
-                                style="width:90%; min-width:null"
+                                style="width:90%; min-width:unset"
                                 :placeholder="$t('userTask.dueDate.placeholder')"
                                 :disabled="readOnly"
                                 :value="model.dueDate"

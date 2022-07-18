@@ -22,6 +22,7 @@ export default function(G6){
       }
     },
     onNodeLeave(e){
+      console.log('e.target.constructor.name',e.target.constructor.name)
       if(!(e.target.constructor.name == 'Marker3') && !this.graph.get('edgeDragging')) {
         this.graph.setItemState(e.item, 'show-anchor', false);
       }

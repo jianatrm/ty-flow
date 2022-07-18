@@ -1,6 +1,6 @@
 <template>
     <div :data-clazz="model.clazz">
-        <div class="panelTitle">{{model.clazz === 'exclusiveGateway' || model.clazz === 'gateway' ? i18n['exclusiveGateway']
+        <div class="panelTitle">{{model.clazz === 'exclusiveGateway' || model.clazz === 'gateway' ? $t('exclusiveGateway')
             : model.clazz === 'parallelGateway' ? $t('parallelGateway') : $t('inclusiveGateway')}}</div>
         <div class="panelBody">
             <DefaultDetail :model="model" :onChange="onChange" :readOnly="readOnly" />

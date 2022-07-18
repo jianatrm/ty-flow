@@ -168,7 +168,7 @@ const getNodeInSubProcess = (itemId) =>{
   return null;
 }
 const  onItemCfgChange =(key,value)=>{
-  console.log('onItemCfgChange')
+  console.log('onItemCfgChange',key,value)
   const items =  graphInstance.value.get('selectedItems');
   if(items && items.length > 0){
     let item =  graphInstance.value.findById(items[0]);

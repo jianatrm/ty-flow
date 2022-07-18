@@ -16,7 +16,6 @@ export default function(G6){
     onAnchorLeave(e){
       if(!this.graph.get('edgeDragging')) {
         let node = e.item.getContainer().getParent();
-        console.log('node',node)
         if(node) {
           this.graph.setItemState(e.item, 'active-anchor', false);
         }
