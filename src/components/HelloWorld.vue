@@ -1,8 +1,8 @@
 <script setup>
 import ItemPanel from './ItemPanel.vue'
-import DetailPanel from './DetailPanel'
+// import DetailPanel from './DetailPanel'
 import {onMounted, ref,reactive } from 'vue'
-import G6,{Graph}from "@antv/g6";
+import G6 from "@antv/g6";
 import Command from "../plugins/command";
 import Toolbar from "../plugins/toolbar";
 import AddItemPanel from "../plugins/addItemPanel";
@@ -32,22 +32,7 @@ const props = defineProps({
   },
   data: {
     type: Object,
-    default: () => ({nodes:[
-        {
-          title: 'node3',
-          error: false,
-          nodeType: 'a',
-          id: 'node3',
-          nodeLevel: 3,
-          panels: [
-            { title: '成功率', value: '11%' },
-            { title: '耗时', value: '111' },
-            { title: '错误数', value: '111' },
-          ],
-          collapse: true,
-          x: 100,
-          y: 300,
-        },
+    default: () => ({nodes:[{ id: 'startNode1', x: 50, y: 200, label: '', clazz: 'start', }
       ],edges:[]})
   },
   users: {
@@ -124,12 +109,10 @@ const init = ()=>{
     height: 800,
     width: 800,
     modes: {
-      default: ['drag-canvas', 'clickSelected','drag-node'],
-      view: [],
-      edit: [ 'drag-canvas','clickSelected', 'hover-node',
-        'hoverAnchorActived','dragNode','dragEdge',
-        'dragPanelItemAddNode','clickSelected',
-        'deleteItem','itemAlign','dragPoint','brush-select','dragPoint'],
+      default: ['drag-canvas','drag-node'],
+      view: [ ],
+      edit: [ 'drag-canvas', 'hoverNodeActived','hoverAnchorActived','dragNode','dragEdge',
+        'dragPanelItemAddNode','clickSelected','deleteItem','itemAlign','dragPoint','brush-select'],
     },
     defaultNode:{
       type:'ty-start-node'
@@ -138,7 +121,7 @@ const init = ()=>{
   graph.saveXML = (createFile = true) => exportXML(graph.save(),state.processModel,createFile);
   graph.saveImg = (createFile = true) => exportImg(canvasRef.value,state.processModel.name,createFile);
   graphInstance.value = graph
- graph.setMode(props.mode);
+  graph.setMode(props.mode);
   // state.graph.data(initShape(props.data));
   graph.data(data);
   graph.render();

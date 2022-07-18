@@ -2,7 +2,7 @@ export default function(G6){
   G6.registerBehavior('clickSelected', {
     getDefaultCfg() {
       return {
-        multiple: true,
+        multiple: false,
       }
     },
     getEvents() {

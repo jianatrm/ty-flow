@@ -8,7 +8,7 @@ export default function(G6){
     defaultShapeType: 'marker',
     getShape:(type)=> {
       const shapeObj = Object.assign({}, shapeBase,{
-        type: 'marker',
+        type: 'Marker',
         itemType: type,
         drawShape(cfg, group) {
           const style = this.getShapeStyle(cfg);

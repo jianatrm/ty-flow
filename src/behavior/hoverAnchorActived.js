@@ -8,10 +8,14 @@ export default function(G6){
       }
     },
     onAnchorEnter(e){
-      if(!this.graph.get('edgeDragging'))
+      console.log('hoverAnchorActived:onAnchorEnter',e)
+      if(!this.graph.get('edgeDragging')){
         this.graph.setItemState(e.item, 'active-anchor', true);
+      }
+
     },
     onAnchorLeave(e){
+      console.log('hoverAnchorActived:onAnchorLeave',e)
       if(!this.graph.get('edgeDragging')) {
         let node = e.item.getContainer().getParent();
         if(node) {

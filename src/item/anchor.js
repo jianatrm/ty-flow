@@ -1,6 +1,6 @@
 import editorStyle from '../util/defaultStyle';
 import Item from '@antv/g6-core/lib/item/item';
-import deepMix  from '@antv/util/lib/deep-mix';
+import {deepMix}  from '@antv/util';
 
 export default class Anchor extends Item {
   constructor(cfg) {
@@ -21,6 +21,7 @@ export default class Anchor extends Item {
   }
 
   showHotpot(){
+    console.log('showHotpot')
     this.hotpot = this.getContainer().addShape('marker', {
       attrs: {
         ...this.get('model').style,
