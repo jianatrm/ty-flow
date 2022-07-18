@@ -19,7 +19,7 @@ class AddItemPanel {
   initPlugin(graph) {
     const parentNode = this.get('container');
     const ghost = createDom('<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"'+' style="opacity:0"/>');
-    const children = parentNode.querySelectorAll('div  .el-collapse-item  .el-collapse-item__wrap  > img[data-item]');
+    const children = parentNode.querySelectorAll('div > .el-collapse-item > .el-collapse-item__wrap > .el-collapse-item__content > img[data-item]');
     each(children,(child,i)=>{
       const addModel = (new Function("return " + child.getAttribute('data-item')))();
       child.addEventListener('dragstart', e => {

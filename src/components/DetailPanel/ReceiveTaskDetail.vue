@@ -1,45 +1,39 @@
 <template>
-    <div :data-clazz="model.clazz">
-        <div class="panelTitle">{{i18n['receiveTask']}}</div>
+    <div :data-clazz="props.model.clazz">
+        <div class="panelTitle">{{$t('receiveTask')}}</div>
         <div class="panelBody">
-            <DefaultDetail :model="model" :onChange="onChange" :readOnly="readOnly" />
+            <DefaultDetail :model="props.model" :onChange="props.onChange" :readOnly="props.readOnly" />
             <div class="panelRow">
-                <div>{{i18n['receiveTask.waitState']}}：</div>
+                <div>{{$t('receiveTask.waitState')}}：</div>
                 <el-input style="width:90%; font-size:12px"
-                          :disabled="readOnly"
-                          :value="model.waitState"
-                          @input="(value) => {onChange('waitState', value)}" />
+                          :disabled="props.readOnly"
+                          :value="props.model.waitState"
+                          @input="(value) => {props.onChange('waitState', value)}" />
             </div>
             <div class="panelRow">
-                <div>{{i18n['receiveTask.stateValue']}}：</div>
+                <div>{{$t('receiveTask.stateValue')}}：</div>
                 <el-input style="width:90%; font-size:12px"
-                          :disabled="readOnly"
-                          :value="model.stateValue"
-                          @input="(value) => {onChange('stateValue', value)}" />
+                          :disabled="props.readOnly"
+                          :value="props.model.stateValue"
+                          @input="(value) => {props.onChange('stateValue', value)}" />
             </div>
         </div>
     </div>
 </template>
-<script>
-  import DefaultDetail from "./DefaultDetail";
-  export default {
-    inject: ['i18n'],
-    components: {
-      DefaultDetail
+<script setup>
+  import DefaultDetail from "./DefaultDetail.vue";
+ const props =  defineProps({
+    model: {
+      type:Object,
+      default: ()=>({}),
     },
-    props: {
-      model: {
-        type:Object,
-        default: ()=>({}),
-      },
-      onChange: {
-        type: Function,
-        default: ()=>{}
-      },
-      readOnly:{
-        type: Boolean,
-        default: false,
-      }
+    onChange: {
+      type: Function,
+      default: ()=>{}
     },
-  }
+    readOnly:{
+      type: Boolean,
+      default: false,
+    }
+  })
 </script>

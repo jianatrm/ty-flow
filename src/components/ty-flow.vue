@@ -32,8 +32,7 @@ const props = defineProps({
   },
   data: {
     type: Object,
-    default: () => ({nodes:[{ id: 'startNode1', x: 50, y: 200, label: '', clazz: 'start', }
-      ],edges:[]})
+    default: () => ({nodes:[],edges:[]})
   },
   users: {
     type: Array,
@@ -70,28 +69,6 @@ const state = reactive({
   cmdPlugin: null,
   height:800
 })
-
-const data = {
-  nodes: [
-    {
-      id: 'circle',
-      text: 'Start',
-      type:'timer-start-node',
-      clazz:'start',
-      x: 130,
-      y: 130,
-      r:60,
-      linkPoints: {
-        top: true,
-        bottom: true,
-        left: true,
-        right: true,
-        size: 5,
-        fill: '#fff',
-      },
-    },
-  ],
-};
 onMounted(() => {
   init()
 })
@@ -126,8 +103,7 @@ const init = ()=>{
   graph.saveImg = (createFile = true) => exportImg(canvasRef.value,state.processModel.name,createFile);
   graphInstance.value = graph
   graph.setMode(props.mode);
-  // state.graph.data(initShape(props.data));
-  graph.data(data);
+  graph.data(initShape(props.data));
   graph.render();
   initEvents();
 }
@@ -136,7 +112,7 @@ const initShape = (data)=>{
     return {
       nodes: data.nodes.map(node => {
         return {
-          shape: getShapeName(node.clazz),
+          type: getShapeName(node.clazz),
           ...node,
         }
       }),
@@ -149,11 +125,13 @@ const initShape = (data)=>{
 
 const initEvents = ()=>{
   graphInstance.value.on('afteritemselected',(items)=>{
+
     if(items && items.length > 0) {
       let item = graphInstance.value.findById(items[0]);
       if(!item){
         item = getNodeInSubProcess(items[0])
       }
+      console.log('afteritemselected',item)
       state.selectedModel = {...item.getModel()};
     } else {
       state.selectedModel = state.processModel;

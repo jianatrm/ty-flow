@@ -1,35 +1,19 @@
 <template>
     <div class="detailPanel" :style="{'height':height+'px'}">
         <UserTaskDetail v-if="model.clazz === 'userTask'" :model="model" :onChange="onChange" :readOnly="readOnly" :users="users" :groups="groups" />
-<!--        <ScriptTaskDetail v-else-if="model.clazz === 'scriptTask'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <JavaTaskDetail v-else-if="model.clazz === 'javaTask'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <ReceiveTaskDetail v-else-if="model.clazz === 'receiveTask'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <MailTaskDetail v-else-if="model.clazz === 'mailTask'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <TimerEventDetail v-else-if="model.clazz === 'timerStart' || model.clazz === 'timerCatch'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <SignalEventDetail v-else-if="model.clazz === 'signalStart' || model.clazz === 'signalCatch'" :model="model" :onChange="onChange" :readOnly="readOnly" :signalDefs="signalDefs" />-->
-<!--        <MessageEventDetail v-else-if="model.clazz === 'messageStart' || model.clazz === 'messageCatch'" :model="model" :onChange="onChange" :readOnly="readOnly" :messageDefs="messageDefs" />-->
-<!--        <GatewayDetail v-else-if="model.clazz === 'gateway' || model.clazz === 'exclusiveGateway' || model.clazz === 'parallelGateway' || model.clazz === 'inclusiveGateway'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
-<!--        <FlowDetail v-else-if="model.clazz === 'flow'" :model="model" :onChange="onChange" :readOnly="readOnly" />-->
+        <ReceiveTaskDetail v-else-if="model.clazz === 'receiveTask'" :model="model" :onChange="onChange" :readOnly="readOnly" />
+        <GatewayDetail v-else-if="model.clazz === 'gateway' || model.clazz === 'exclusiveGateway' || model.clazz === 'parallelGateway' || model.clazz === 'inclusiveGateway'" :model="model" :onChange="onChange" :readOnly="readOnly" />
         <StartEventDetail v-else-if="model.clazz === 'start'" :model="model" :onChange="onChange" :readOnly="readOnly" />
         <EndEventDetail v-else-if="model.clazz === 'end'" :model="model" :onChange="onChange" :readOnly="readOnly" />
-<!--        <ProcessDetail v-else-if="model.clazz === 'process'" :model="model" :onChange="onChange" :readOnly="readOnly" :categorys="categorys" />-->
     </div>
 </template>
 <script setup>
 import {defineProps} from 'vue'
   import UserTaskDetail from "./UserTaskDetail.vue"
-  // import JavaTaskDetail from "./JavaTaskDetail.vue"
-  // import ScriptTaskDetail from "./ScriptTaskDetail.vue"
-  // import ReceiveTaskDetail from "./ReceiveTaskDetail.vue"
-  // import MailTaskDetail from "./MailTaskDetail.vue"
-  // import TimerEventDetail from "./TimerEventDetail.vue"
-  // import SignalEventDetail from "./SignalEventDetail.vue"
-  // import MessageEventDetail from "./MessageEventDetail.vue"
-  // import GatewayDetail from "./GatewayDetail.vue"
-  // import FlowDetail from "./FlowDetail.vue"
+  import ReceiveTaskDetail from "./ReceiveTaskDetail.vue"
+  import GatewayDetail from "./GatewayDetail.vue"
   import StartEventDetail from "./StartEventDetail.vue"
   import EndEventDetail from "./EndEventDetail.vue"
-  // import ProcessDetail from "./ProcessDetail.vue"
   const props = defineProps({
         height: {
           type: Number,
@@ -69,8 +53,9 @@ import {defineProps} from 'vue'
         }
       })
 </script>
-<style >
+<style  lang="less">
     .detailPanel {
+        width: 100% !important;
         height: 100%;
         background: #f0f2f5;
         flex: 0 0 auto;

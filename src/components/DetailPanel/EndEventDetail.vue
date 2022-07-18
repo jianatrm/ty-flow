@@ -1,31 +1,26 @@
 <template>
     <div :data-clazz="model.clazz">
-        <div class="panelTitle">{{$t['endEvent']}}</div>
+        <div class="panelTitle">{{$t('endEvent')}}</div>
         <div class="panelBody">
             <DefaultDetail :model="model" :onChange="onChange" :readOnly="readOnly" />
         </div>
     </div>
 </template>
 <script>
+  import {defineProps} from 'vue'
   import DefaultDetail from "./DefaultDetail.vue";
-  export default {
-    inject: ['i18n'],
-    components: {
-      DefaultDetail
+  const props = defineProps({
+    model: {
+      type:Object,
+      default: ()=>({}),
     },
-    props: {
-      model: {
-        type:Object,
-        default: ()=>({}),
-      },
-      onChange: {
-        type: Function,
-        default: ()=>{}
-      },
-      readOnly:{
-        type: Boolean,
-        default: false,
-      }
+    onChange: {
+      type: Function,
+      default: ()=>{}
     },
-  }
+    readOnly:{
+      type: Boolean,
+      default: false,
+    }
+  })
 </script>
