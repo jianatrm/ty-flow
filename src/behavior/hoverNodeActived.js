@@ -22,8 +22,7 @@ export default function(G6){
       }
     },
     onNodeLeave(e){
-      console.log('hoverNodeActived:onNodeLeave',e.item.getType())
-      if(!(e.item.getType() == 'node') && !this.graph.get('edgeDragging')) {
+      if(!(e.target.constructor.name == 'Marker3') && !this.graph.get('edgeDragging')) {
         this.graph.setItemState(e.item, 'show-anchor', false);
       }
     },
