@@ -22,7 +22,7 @@
             <div class="panelRow">
                 <el-checkbox @change="(value) => onChange('reverse', value)"
                              :disabled="readOnly"
-                             v-model="!!model.reverse">{{$t('sequenceFlow.reverse')}}</el-checkbox>
+                             v-model="model.reverse">{{$t('sequenceFlow.reverse')}}</el-checkbox>
             </div>
         </div>
     </div>

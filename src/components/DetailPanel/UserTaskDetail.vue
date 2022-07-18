@@ -71,7 +71,7 @@
             <div class="panelRow">
                 <el-checkbox @change="(value) => onChange('isSequential', value)"
                              :disabled="readOnly"
-                             v-model="!!model.isSequential">{{$t('userTask.counterSign')}}</el-checkbox>
+                             v-model="model.isSequential">{{$t('userTask.counterSign')}}</el-checkbox>
             </div>
         </div>
     </div>
