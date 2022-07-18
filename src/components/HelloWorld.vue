@@ -1,6 +1,6 @@
 <script setup>
 import ItemPanel from './ItemPanel.vue'
-// import DetailPanel from './DetailPanel'
+import DetailPanel from './DetailPanel/index.vue'
 import {onMounted, ref,reactive } from 'vue'
 import G6 from "@antv/g6";
 import Command from "../plugins/command";
@@ -52,6 +52,7 @@ const props = defineProps({
 const canvasRef = ref(null)
 const toolbarRef = ref(null)
 const addItemPanelRef = ref(null)
+const detailPanelRef = ref(null)
 const graphInstance = ref({})
 const state = reactive({
   resizeFunc: ()=>{},
@@ -105,7 +106,7 @@ const init = ()=>{
   const width = canvasRef.value.offsetWidth;
   const graph = new G6.Graph({
     plugins: plugins,
-    container: 'container',
+    container: canvasRef.value,
     height: 800,
     width: 800,
     modes: {
@@ -116,7 +117,10 @@ const init = ()=>{
     },
     defaultNode:{
       type:'ty-start-node'
-    }
+    },
+    defaultEdge: {
+      type: 'flow-polyline-round',
+    },
   });
   graph.saveXML = (createFile = true) => exportXML(graph.save(),state.processModel,createFile);
   graph.saveImg = (createFile = true) => exportImg(canvasRef.value,state.processModel.name,createFile);
@@ -211,7 +215,19 @@ const getNodeInSubProcess = (itemId) =>{
      <div class="col col-16">
        <div id="container" ref="canvasRef"/>
      </div>
-     <div class="col col-4"></div>
+     <div class="col col-4">
+       <DetailPanel ref="detailPanelRef"
+                    v-if="!props.isView"
+                    :height="props.height"
+                    :model="state.selectedModel"
+                    :readOnly="props.mode !== 'edit'"
+                    :users="props.users"
+                    :groups="props.groups"
+                    :categorys="props.categorys"
+                    :signalDefs="state.processModel.signalDefs"
+                    :messageDefs="state.processModel.messageDefs"
+                    :onChange="(key,val)=>{onItemCfgChange(key,val)}" />
+     </div>
    </div>
  </div>
 

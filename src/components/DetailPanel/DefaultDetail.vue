@@ -1,35 +1,33 @@
 <template>
     <div>
         <div class="panelRow">
-            <div>{{i18n['label']}}：</div>
+            <div>{{$t('label')}}：</div>
             <el-input style="width:90%; font-size:12px"
-                      :disabled="readOnly"
-                      :value="model.label"
-                      @input="(value) => {onChange('label', value)}" />
+                      :disabled="props.readOnly"
+                      :value="props.model.label"
+                      @input="(value) => {props.onChange('label', value)}" />
         </div>
         <div class="panelRow">
-            <el-checkbox @change="(value) => onChange('hideIcon', value)"
-                         :disabled="readOnly"
-                         :value="!!model.hideIcon">{{i18n['hideIcon']}}</el-checkbox>
+            <el-checkbox @change="(value) => props.onChange('hideIcon', value)"
+                         :disabled="props.readOnly"
+                         :value="!!props.model.hideIcon">{{$t('hideIcon')}}</el-checkbox>
         </div>
     </div>
 </template>
-<script>
-  export default {
-    inject: ['i18n'],
-    props: {
-      model: {
-        type:Object,
-        default: ()=>({}),
-      },
-      onChange: {
-        type: Function,
-        default: ()=>{}
-      },
-      readOnly:{
-        type: Boolean,
-        default: false,
-      }
+<script setup>
+import {defineProps} from 'vue'
+  const props = defineProps({
+    model: {
+      type:Object,
+    default: ()=>({}),
     },
-  }
+    onChange: {
+      type: Function,
+    default: ()=>{}
+    },
+    readOnly:{
+      type: Boolean,
+    default: false,
+    }
+  })
 </script>

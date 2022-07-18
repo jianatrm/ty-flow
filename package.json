@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@antv/g6": "^4.6.15",
+    "element-plus": "^2.2.9",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "vue": "^3.2.25",
