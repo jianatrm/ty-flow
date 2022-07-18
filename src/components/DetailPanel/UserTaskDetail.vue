@@ -7,7 +7,7 @@
                 <div>{{$t('userTask.assignType')}}：</div>
                 <el-select style="width:90%; font-size: 12px"
                            :placeholder="$t('userTask.assignType.placeholder')"
-                           :value="model.assignType"
+                           v-model="model.assignType"
                            :disabled="readOnly"
                            @change="(e) => { onChange('assignValue', []);onChange('assignType', e) }">
                     <el-option key="assignee" value="assignee" :label="$t('userTask.assignType.assignee')"/>
@@ -20,7 +20,7 @@
                 <el-select style="width:90%; font-size:12px"
                            :placeholder="$t('userTask.assignType.assignee.placeholder')"
                            :disabled="readOnly"
-                           :value="model.assignValue"
+                           v-model="model.assignValue"
                            :multiple="true"
                            :multiple-limit="1"
                            allow-create
@@ -35,7 +35,7 @@
                 <el-select style="width:90%; font-size:12px"
                            :placeholder="$t('userTask.assignType.person.placeholder')"
                            :disabled="readOnly"
-                           :value="model.assignValue"
+                           v-model="model.assignValue"
                            :multiple="true"
                            allow-create
                            :filterable="true"
@@ -48,7 +48,7 @@
                 <div>{{$t('userTask.assignType.persongroup.title')}}：</div>
                 <el-select style="width:90%; font-size:12px"
                            :placeholder="$t('userTask.assignType.persongroup.placeholder')"
-                           :value="model.assignValue"
+                           v-model="model.assignValue"
                            :disabled="readOnly"
                            :multiple="true"
                            allow-create
@@ -64,14 +64,14 @@
                                 style="width:90%; min-width:unset"
                                 :placeholder="$t('userTask.dueDate.placeholder')"
                                 :disabled="readOnly"
-                                :value="model.dueDate"
+                                v-model="model.dueDate"
                                 value-format="yyyy-MM-dd HH:mm:ss"
                                 @input="(value) => onChange('dueDate', value)" />
             </div>
             <div class="panelRow">
                 <el-checkbox @change="(value) => onChange('isSequential', value)"
                              :disabled="readOnly"
-                             :value="!!model.isSequential">{{$t('userTask.counterSign')}}</el-checkbox>
+                             v-model="!!model.isSequential">{{$t('userTask.counterSign')}}</el-checkbox>
             </div>
         </div>
     </div>

@@ -9,20 +9,20 @@
                           type="textarea"
                           :rows="4"
                           :disabled="readOnly"
-                          :value="model.conditionExpression"
+                          v-model="model.conditionExpression"
                           @input="(value) => {onChange('conditionExpression', value)}" />
             </div>
             <div class="panelRow">
                 <div>{{$t('sequenceFlow.seq')}}：</div>
                 <el-input style="width:90%; font-size:12px"
                           :disabled="readOnly"
-                          :value="model.seq"
+                          v-model="model.seq"
                           @input="(value) => {onChange('seq', value)}" />
             </div>
             <div class="panelRow">
                 <el-checkbox @change="(value) => onChange('reverse', value)"
                              :disabled="readOnly"
-                             :value="!!model.reverse">{{$t('sequenceFlow.reverse')}}</el-checkbox>
+                             v-model="!!model.reverse">{{$t('sequenceFlow.reverse')}}</el-checkbox>
             </div>
         </div>
     </div>

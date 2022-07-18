@@ -4,7 +4,7 @@
       <div>{{ $t('label') }}：</div>
       <el-input style="width:90%; font-size:12px"
                 :disabled="props.readOnly"
-                :value="props.model.label"
+                v-model="props.model.label"
                 @input="(value) => {props.onChange('label', value)}"/>
     </div>
     <div class="panelRow">

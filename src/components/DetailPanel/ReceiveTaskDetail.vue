@@ -7,14 +7,14 @@
                 <div>{{$t('receiveTask.waitState')}}：</div>
                 <el-input style="width:90%; font-size:12px"
                           :disabled="props.readOnly"
-                          :value="props.model.waitState"
+                          v-model="props.model.waitState"
                           @input="(value) => {props.onChange('waitState', value)}" />
             </div>
             <div class="panelRow">
                 <div>{{$t('receiveTask.stateValue')}}：</div>
                 <el-input style="width:90%; font-size:12px"
                           :disabled="props.readOnly"
-                          :value="props.model.stateValue"
+                          v-model="props.model.stateValue"
                           @input="(value) => {props.onChange('stateValue', value)}" />
             </div>
         </div>
