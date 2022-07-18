@@ -86,7 +86,7 @@ const init = ()=>{
     plugins: plugins,
     container: canvasRef.value,
     height: 800,
-    width: 800,
+    width: width,
     modes: {
       default: ['drag-canvas','drag-node'],
       view: [ ],

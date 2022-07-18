@@ -7,7 +7,7 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
 import {defineProps} from 'vue'
   import DefaultDetail from "./DefaultDetail.vue";
   const  props = defineProps({
