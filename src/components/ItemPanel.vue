@@ -1,7 +1,7 @@
 <template>
   <div class="itemPanel" :style="{'height': props.height+'px'}">
     <div class="title">常规节点</div>
-    <div class="el-collapse" >
+    <div class="el-collapse">
       <div class="el-collapse-item">
         <img data-item="{clazz:'start',size:'30*30',label:''}"
              :src="getUrl('../assets/flow/start.svg')" style="width:42px;height:42px"/>
@@ -16,6 +16,8 @@
         <img :data-item="userTaskData"
              :src="getUrl('../assets/flow/user-task.svg')" style="width:80px;height:44px"/>
         <div>{{ $t('userTask') }}</div>
+      </div>
+      <div class="el-collapse-item">
         <img :data-item="receiveTaskData"
              :src="getUrl('../assets/flow/receive-task.svg')" style="width:80px;height:44px"/>
         <div>{{ $t('receiveTask') }}</div>
@@ -53,7 +55,8 @@ const {userTaskData, receiveTaskData} = toRefs(state)
   overflow-y: auto;
   border-left: 1px solid #E9E9E9;
   border-bottom: 1px solid #E9E9E9;
-  .title{
+
+  .title {
     width: 100%;
     height: 60px;
     display: flex;
@@ -76,13 +79,15 @@ const {userTaskData, receiveTaskData} = toRefs(state)
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .el-collapse-item {
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      &:active{
+
+      &:active {
         background-color: #ffffff;
       }
     }
