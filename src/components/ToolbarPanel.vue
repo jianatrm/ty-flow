@@ -69,7 +69,7 @@
     .toolbar {
         text-align: left;
         width: 100%;
-        padding: 8px 0;
+        padding:  0;
         background-color: #fff;
         border: 1px solid #E9E9E9;
         box-shadow: 0 8px 12px 0 rgba(0, 52, 107, 0.04);
@@ -85,7 +85,7 @@
             }
 
             &:nth-of-type(1) {
-                margin-left: 24px;
+                //margin-left: 24px;
             }
 
             &:hover {
