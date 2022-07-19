@@ -196,15 +196,16 @@ const  onItemCfgChange =(key,value)=>{
 
 <template>
  <div>
-   <ToolbarPanel ref="toolbarRef"></ToolbarPanel>
+
    <div class="row">
-     <div class="col col-4">
+     <div class="col w_80">
        <ItemPanel ref="addItemPanelRef"></ItemPanel>
      </div>
-     <div class="col col-16">
+     <div class="col flex-1" style="position: relative">
+      <div style="position:absolute; right: 20px;top: 20px"> <ToolbarPanel ref="toolbarRef"></ToolbarPanel></div>
        <div id="container" ref="canvasRef"/>
      </div>
-     <div class="col col-4">
+     <div class="col w_300">
        <DetailPanel ref="detailPanelRef"
                     v-if="!props.isView"
                     :height="props.height"
@@ -242,6 +243,15 @@ const  onItemCfgChange =(key,value)=>{
 
 .col-4 {
   flex: 4;
+}
+.w_80{
+  width: 80px;
+}
+.w_300{
+  width: 300px;
+}
+.flex-1{
+  flex: 1;
 }
 .card{
   display: flex;

@@ -60,7 +60,6 @@ import {defineProps} from 'vue'
 <style  lang="less">
     .detailPanel {
         width: 100% !important;
-        height: 100%;
         background: #f0f2f5;
         flex: 0 0 auto;
         float: left;

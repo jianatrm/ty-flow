@@ -1,6 +1,8 @@
 <template>
 
-  <ty-flow ref="tyFlow" :data="demoData" :height="600" :users="candidateUsers" :groups="candidateGroups" :categorys="categorys" :lang="lang" />
+  <div style="width: 1300px; margin: 40px auto">
+    <ty-flow ref="tyFlow" :data="demoData" :height="800" :users="candidateUsers" :groups="candidateGroups" :categorys="categorys" :lang="lang" />
+  </div>
 </template>
 
 <script setup>
