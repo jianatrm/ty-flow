@@ -80,10 +80,12 @@ const init = ()=>{
   const addItemPanel = new AddItemPanel({container:addItemPanelRef.value.$el});
   const canvasPanel = new CanvasPanel({container:canvasRef.value});
   console.log('canvasRef.value',canvasRef.value)
-  plugins = [ cmdPlugin,toolbar,addItemPanel,canvasPanel ];
+  const grid = new G6.Grid({img:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuXzAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgcng9IjEiIHJ5PSIxIiBmaWxsPSIjYWFhYWFhIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm5fMCkiLz48L3N2Zz4="});
+  plugins = [ cmdPlugin,toolbar,addItemPanel,canvasPanel,grid ];
   const width = canvasRef.value.offsetWidth;
   const graph = new G6.Graph({
     plugins: plugins,
+    grid:true,
     container: canvasRef.value,
     height: 800,
     width: width,

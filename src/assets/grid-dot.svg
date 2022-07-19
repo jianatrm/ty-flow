@@ -1,0 +1,176 @@
+<svg width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" class="x6-graph-svg">
+    <defs>
+        <marker refX="-1" id="marker-v130-959247788" overflow="visible" orient="auto" markerUnits="userSpaceOnUse">
+            <path stroke="#A2B1C3" fill="#A2B1C3" transform="rotate(180)" d="M 0 0 L 12 -4 L 12 4 Z"></path>
+        </marker>
+    </defs>
+    <g class="x6-graph-svg-viewport">
+        <g class="x6-graph-svg-primer"></g>
+        <g class="x6-graph-svg-stage">
+            <g data-cell-id="93ce43f3-025a-477a-b94e-1a31268e6177" data-shape="edge" class="x6-cell x6-edge" style="">
+                <path fill="none" cursor="pointer" stroke="transparent" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="10" d="M 96 68 L 165 68"></path>
+                <path fill="none" pointer-events="none" stroke-linejoin="round" stroke="#A2B1C3" stroke-width="2"
+                      d="M 96 68 L 165 68" marker-end="url(#marker-v130-959247788)"></path>
+            </g>
+            <g data-cell-id="0c211faa-a1ca-4598-a04e-3a8e50ba3403" data-shape="custom-rect" class="x6-cell x6-node"
+               transform="translate(30,50)">
+                <rect fill="#EFF4FF" stroke="#5F95FF" stroke-width="1" width="66" height="36"></rect>
+                <text font-size="12" fill="#262626" text-anchor="middle" font-family="Arial, helvetica, sans-serif"
+                      transform="matrix(1,0,0,1,33,18)" xml:space="preserve"><tspan dy="0.3em" class="v-line">过程</tspan></text>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,0)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="779f6801-bd54-4208-acdc-05bf190e51cb"
+                            port-group="top" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,66,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="e27497fa-1836-4eb6-929f-89426bb775c6"
+                            port-group="right" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;" id="v3"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,36)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="60199d43-682f-4a22-a282-7759e9c743bc"
+                            port-group="bottom" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,0,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="5a7ce440-ac89-46e6-aa0c-19401989cfac"
+                            port-group="left" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+            </g>
+            <g data-cell-id="22f91ec5-fcd5-4367-846a-89b3fd7e03be" data-shape="custom-rect" class="x6-cell x6-node"
+               transform="translate(167,50)">
+                <rect fill="#EFF4FF" stroke="#5F95FF" stroke-width="1" rx="6" ry="6" width="66" height="36"></rect>
+                <text font-size="12" fill="#262626" text-anchor="middle" font-family="Arial, helvetica, sans-serif"
+                      transform="matrix(1,0,0,1,33,18)" xml:space="preserve"><tspan dy="0.3em" class="v-line">可选过程</tspan></text>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,0)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="01bd3890-e753-48d5-a693-2e1f473cef86"
+                            port-group="top" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,66,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="8559dcd6-32fb-4f33-857d-18d222112572"
+                            port-group="right" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,36)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="27eb50eb-7dc0-4492-b6bb-07e786371475"
+                            port-group="bottom" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,0,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="d3eebd2a-d054-42b7-a7e7-bbae6c9c5fb5"
+                            port-group="left" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;" id="v4"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+            </g>
+            <g data-cell-id="20a169b2-0ca6-4ced-b0de-a49eb812ef2e" data-shape="custom-rect" class="x6-cell x6-node"
+               transform="translate(20,190)">
+                <rect fill="#EFF4FF" stroke="#5F95FF" stroke-width="1" width="66" height="36"></rect>
+                <text font-size="12" fill="#262626" text-anchor="middle" font-family="Arial, helvetica, sans-serif"
+                      transform="matrix(1,0,0,1,33,18)" xml:space="preserve"><tspan dy="0.3em" class="v-line">过程</tspan></text>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,0)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="779f6801-bd54-4208-acdc-05bf190e51cb"
+                            port-group="top" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,66,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="e27497fa-1836-4eb6-929f-89426bb775c6"
+                            port-group="right" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,36)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="60199d43-682f-4a22-a282-7759e9c743bc"
+                            port-group="bottom" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,0,18)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="5a7ce440-ac89-46e6-aa0c-19401989cfac"
+                            port-group="left" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+            </g>
+            <g data-cell-id="01d8cf39-3f13-405f-983a-7529347207f6" data-shape="custom-polygon" class="x6-cell x6-node"
+               transform="translate(96,137)">
+                <polygon fill="#EFF4FF" stroke="#5F95FF" stroke-width="1" points="0, 18 33, 0 66, 18 33, 36"></polygon>
+                <text font-size="12" fill="#262626" text-anchor="middle" font-family="Arial, helvetica, sans-serif"
+                      transform="matrix(1,0,0,1,33,18)" xml:space="preserve"><tspan dy="0.3em" class="v-line">决策</tspan></text>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,0)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="aa17b164-e7e4-43fa-9f79-d23bb872956b"
+                            port-group="top" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,33,36)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="7d335082-c1bc-45e1-ae00-e8ca5ec06bf6"
+                            port-group="bottom" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+            </g>
+            <g data-cell-id="5a5bd84c-b2a8-4025-9382-45cce6a3e1d5" data-shape="custom-circle" class="x6-cell x6-node"
+               transform="translate(122,186)">
+                <circle fill="#EFF4FF" stroke="#5F95FF" stroke-width="1" cx="22.5" cy="22.5" r="22.5"></circle>
+                <text font-size="12" fill="#262626" text-anchor="middle" font-family="Arial, helvetica, sans-serif"
+                      transform="matrix(1,0,0,1,22.5,22.5)" xml:space="preserve"><tspan dy="0.3em" class="v-line">连接</tspan></text>
+                <g class="x6-port" transform="matrix(1,0,0,1,23,0)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="78f00547-bb92-43ba-ba00-8c7d10ac579c"
+                            port-group="top" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,45,23)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="e670f33c-ce65-4200-a18d-15d4bc05241e"
+                            port-group="right" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,23,45)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="b30dac71-92b4-481a-92cd-63afcda5d29f"
+                            port-group="bottom" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+                <g class="x6-port" transform="matrix(1,0,0,1,0,23)">
+                    <circle r="4" fill="#fff" stroke="#5F95FF" port="cac5a672-138a-412f-bd4b-8d7d58e3da54"
+                            port-group="left" class="x6-port-body" magnet="true" stroke-width="1"
+                            style="visibility: hidden;"></circle>
+                    <text fill="#000000" class="x6-port-label" transform="matrix(1,0,0,1,-15,0)" y=".3em"
+                          text-anchor="end"></text>
+                </g>
+            </g>
+        </g>
+        <g class="x6-graph-svg-decorator"></g>
+        <g class="x6-graph-svg-overlay"></g>
+    </g>
+</svg>
