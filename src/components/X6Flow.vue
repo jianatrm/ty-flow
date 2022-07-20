@@ -1,11 +1,37 @@
 <template>
-  <div id="container"></div>
+ <div style="width: 100%;height: 100%;display: flex">
+   <div id="container"></div>
+   <div  v-if="formModel" class="detailPannel" style="width: 300px;height: 100%;background-color: #f2f3f5">
+    <div>{{formModel.type}}</div>
+
+     <el-form
+         label-position="top"
+         label-width="100px"
+         :model="formModel"
+         style="max-width: 460px"
+     >
+       <el-form-item label="标题">
+         <el-input :model-value="formModel.text" @input="handleInput"></el-input>
+       </el-form-item>
+       <el-form-item label="顺序">
+         <el-input v-model="formModel.region" />
+       </el-form-item>
+       <el-form-item label="Activity form">
+         <el-input v-model="formModel.type" />
+       </el-form-item>
+     </el-form>
+   </div>
+ </div>
 </template>
 
 <script setup>
-import {onMounted} from "vue";
+import {onMounted, reactive, ref, toRefs} from "vue";
 import {Graph, Shape, Addon} from '@antv/x6'
-
+const selectModel = ref(null)
+const state = reactive({
+  formModel:null
+})
+const { formModel } =  toRefs(state)
 onMounted(() => {
   preWork()
 
@@ -64,8 +90,9 @@ onMounted(() => {
         name: 'stroke',
         args: {
           attrs: {
-            fill: '#5F95FF',
-            stroke: '#5F95FF',
+            fill: '#ffffff',
+            stroke: '#6f998a',
+            'stroke-width': 8,
           },
         },
       },
@@ -80,6 +107,7 @@ onMounted(() => {
     snapline: true,
     keyboard: true,
     clipboard: true,
+    history: true,
   })
 // #endregion
 
@@ -100,20 +128,72 @@ onMounted(() => {
     layoutOptions: {
       columns: 1,
       columnWidth: 60,
-      rowHeight: 55,
+      rowHeight: 80,
     },
     getDragNode(node) {
       console.log('node',node)
       // 这里返回一个新的节点作为拖拽节点
+      let map = {
+        start:{
+          label:'开始',
+          url:new URL('../assets/x6/start.svg', import.meta.url).href
+        },
+        approve:{
+          label:'审批节点',
+          url:new URL('../assets/x6/approve.svg', import.meta.url).href
+        },
+        task:{
+          label:'处理节点',
+          url:new URL('../assets/x6/task.svg', import.meta.url).href
+        },
+        end:{
+          label:'结束',
+          url:new URL('../assets/x6/end.svg', import.meta.url).href
+        }
+      }
       return graph.createNode({
-        width: 100,
-        height: 100,
+        width: node.attrs.width,
+        height: 48,
         shape: 'rect',
+        label: map[node.attrs.type].label,
         attrs: {
+          type:node.attrs.type,
           body: {
-            fill: '#ccc'
+            rx: 20,
+            ry: 26,
+            stroke: '#c9ccd1',
+            strokeWidth: 1,
+            fill: '#ffffff',
+            refWidth: 1,
+            refHeight: 1,
+          },
+          label:{
+            // refX: 70,
+            textVerticalAnchor: 'middle',
+          },
+          image: {
+            'xlink:href':map[node.attrs.type].url,
+            width: 32,
+            height: 32,
+            x: 8,
+            y: 8,
           }
         },
+        markup: [
+          {
+            tagName: 'rect',
+            selector: 'body',
+          },
+          {
+            tagName: 'image',
+            selector: 'image',
+          },
+
+          {
+            tagName: 'text',
+            selector: 'label',
+          },
+        ],
         ports: {...ports},
       })
     }
@@ -210,6 +290,24 @@ onMounted(() => {
     )
     showPorts(ports, false)
   })
+
+  graph.on('node:click', ({ node, e }) => {
+    console.log('node:click',node)
+    selectModel.value = node
+    state.formModel = {
+      type:node.attrs.type,
+      text:node.attrs.text.text
+    }
+  })
+  graph.on('edge:click', ({ edge, e }) => {
+    console.log('edge:click',edge)
+    edge.setLabels('123')
+    // selectModel.value = node
+    // state.formModel = {
+    //   type:node.attrs.type,
+    //   text:node.attrs.text.text
+    // }
+  })
 // #endregion
 
 // #region 初始化图形
@@ -219,10 +317,10 @@ onMounted(() => {
         position: 'top',
         attrs: {
           circle: {
-            r: 4,
+            r: 8,
             magnet: true,
-            stroke: '#5F95FF',
-            strokeWidth: 1,
+            stroke: '#cbe5dc',
+            strokeWidth: 8,
             fill: '#fff',
             style: {
               visibility: 'hidden',
@@ -234,10 +332,10 @@ onMounted(() => {
         position: 'right',
         attrs: {
           circle: {
-            r: 4,
+            r: 8,
             magnet: true,
-            stroke: '#5F95FF',
-            strokeWidth: 1,
+            stroke: '#cbe5dc',
+            strokeWidth: 8,
             fill: '#fff',
             style: {
               visibility: 'hidden',
@@ -249,10 +347,10 @@ onMounted(() => {
         position: 'bottom',
         attrs: {
           circle: {
-            r: 4,
+            r: 8,
             magnet: true,
-            stroke: '#5F95FF',
-            strokeWidth: 1,
+            stroke: '#cbe5dc',
+            strokeWidth: 8,
             fill: '#fff',
             style: {
               visibility: 'hidden',
@@ -264,10 +362,10 @@ onMounted(() => {
         position: 'left',
         attrs: {
           circle: {
-            r: 4,
+            r: 8,
             magnet: true,
-            stroke: '#5F95FF',
-            strokeWidth: 1,
+            stroke: '#cbe5dc',
+            strokeWidth: 8,
             fill: '#fff',
             style: {
               visibility: 'hidden',
@@ -291,174 +389,90 @@ onMounted(() => {
       },
     ],
   }
-
-  Graph.registerNode(
-      'custom-rect',
-      {
-        inherit: 'rect',
-        width: 66,
-        height: 36,
-        attrs: {
-          body: {
-            strokeWidth: 1,
-            stroke: '#5F95FF',
-            fill: '#EFF4FF',
-          },
-          text: {
-            fontSize: 12,
-            fill: '#262626',
-          },
-        },
-        ports: {...ports},
-      },
-      true,
-  )
-
-  Graph.registerNode(
-      'custom-polygon',
-      {
-        inherit: 'polygon',
-        width: 66,
-        height: 36,
-        attrs: {
-          body: {
-            strokeWidth: 1,
-            stroke: '#5F95FF',
-            fill: '#EFF4FF',
-          },
-          text: {
-            fontSize: 12,
-            fill: '#262626',
-          },
-        },
-        ports: {
-          ...ports,
-          items: [
-            {
-              group: 'top',
-            },
-            {
-              group: 'bottom',
-            },
-          ],
-        },
-      },
-      true,
-  )
-
-  Graph.registerNode(
-      'custom-circle',
-      {
-        inherit: 'circle',
-        width: 45,
-        height: 45,
-        attrs: {
-          body: {
-            strokeWidth: 1,
-            stroke: '#5F95FF',
-            fill: '#EFF4FF',
-          },
-          text: {
-            fontSize: 12,
-            fill: '#262626',
-          },
-        },
-        ports: {...ports},
-      },
-      true,
-  )
-
-  Graph.registerNode(
-      'custom-image',
-      {
-        inherit: 'rect',
-        width: 52,
-        height: 52,
-        markup: [
-          {
-            tagName: 'rect',
-            selector: 'body',
-          },
-          {
-            tagName: 'image',
-          },
-          {
-            tagName: 'text',
-            selector: 'label',
-          },
-        ],
-        attrs: {
-          body: {
-            stroke: '#5F95FF',
-            fill: '#5F95FF',
-          },
-          image: {
-            width: 26,
-            height: 26,
-            refX: 13,
-            refY: 16,
-          },
-          label: {
-            refX: 3,
-            refY: 2,
-            textAnchor: 'left',
-            textVerticalAnchor: 'top',
-            fontSize: 12,
-            fill: '#fff',
-          },
-        },
-        ports: {...ports},
-      },
-      true,
-  )
-
   const r1 = graph.createNode({
-    shape: 'custom-rect',
-    label: '开始',
+    shape: 'image',
     attrs: {
-      body: {
-        rx: 20,
-        ry: 26,
+      width:104,
+      type:'start',
+      label: {
+        text: '开始节点',
+        fill: '#000000',
+        refX: 0.5,
+        refY: 50,
+        refY2: 4,
+        textAnchor: 'middle',
+        textVerticalAnchor: 'top',
       },
     },
+    width: 80,
+    height: 40,
+    imageUrl:new URL('../assets/x6/start.svg', import.meta.url).href,
   })
   const r2 = graph.createNode({
-    shape: 'custom-rect',
-    label: '过程',
+    shape: 'image',
+    x: 320,
+    y: 120,
+    width: 80,
+    height: 40,
+    imageUrl:new URL('../assets/x6/approve.svg', import.meta.url).href,
+    attrs: {
+      width:120,
+      type:'approve',
+      label: {
+        text: '审批节点',
+        fill: '#000000',
+        refX: 0.5,
+        refY: 50,
+        refY2: 4,
+        textAnchor: 'middle',
+        textVerticalAnchor: 'top',
+      },
+    },
   })
   const r3 = graph.createNode({
-    shape: 'custom-rect',
+    shape: 'image',
+    x: 320,
+    y: 120,
+    width: 80,
+    height: 40,
+    imageUrl:new URL('../assets/x6/task.svg', import.meta.url).href,
     attrs: {
-      body: {
-        rx: 6,
-        ry: 6,
+      width:120,
+      type:'task',
+      label: {
+        text: '处理节点',
+        fill: '#000000',
+        refX: 0.5,
+        refY: 50,
+        refY2: 4,
+        textAnchor: 'middle',
+        textVerticalAnchor: 'top',
       },
     },
-    label: '可选过程',
   })
+
   const r4 = graph.createNode({
-    shape: 'custom-polygon',
+    shape: 'image',
+    x: 320,
+    y: 120,
+    width: 80,
+    height: 40,
+    imageUrl:new URL('../assets/x6/end.svg', import.meta.url).href,
     attrs: {
-      body: {
-        refPoints: '0,10 10,0 20,10 10,20',
+      width:104,
+      type:'end',
+      label: {
+        text: '结束节点',
+        fill: '#000000',
+        refX: 0.5,
+        refY: 50,
+        refY2: 4,
+        textAnchor: 'middle',
+        textVerticalAnchor: 'top',
       },
     },
-    label: '决策',
   })
-  const r5 = graph.createNode({
-    shape: 'custom-polygon',
-    attrs: {
-      body: {
-        refPoints: '10,0 40,0 30,20 0,20',
-      },
-    },
-    label: '数据',
-  })
-  const r6 = graph.createNode({
-    shape: 'custom-circle',
-    label: '连接',
-  })
-  stencil.load([r1, r2, r3, r4, r5, r6], 'group1')
+  stencil.load([r1,r2,r3,r4], 'group1')
 
 // #endregion
 
@@ -473,9 +487,18 @@ onMounted(() => {
     container.appendChild(graphContainer)
   }
 })
+
+
+
+
+
+const handleInput = (e)=>{
+  selectModel.value.attr('text/text', e)
+  state.formModel.text = e
+}
 </script>
 
-<style >
+<style lang="less">
 #container {
   display: flex;
   border: 1px solid #dfe3e8;
@@ -487,7 +510,7 @@ onMounted(() => {
   height: 100%;
   position: relative;
   border-right: 1px solid #eee;
-  background-color: #dfe3e8 !important;
+  background-color: #f2f3f5 !important;
 }
 
 #graph-container {
@@ -496,11 +519,11 @@ onMounted(() => {
 }
 
 .x6-widget-stencil {
-  background-color: #eee !important;
+  background-color: #f2f3f5 !important;
 }
 
 .x6-widget-stencil-title {
-  background-color: #eee !important;
+  background-color: #f2f3f5 !important;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -541,5 +564,11 @@ onMounted(() => {
 
 .x6-widget-selection-box {
   opacity: 0;
+}
+.x6-node.x6-node-immovable {
+  cursor: pointer;
+}
+.x6-node.x6-node-immovable:hover {
+  background-color: #ffffff;
 }
 </style>
