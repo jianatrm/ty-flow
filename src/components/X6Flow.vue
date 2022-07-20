@@ -91,23 +91,24 @@ onMounted(() => {
         args: {
           attrs: {
             fill: '#ffffff',
-            stroke: '#6f998a',
+            stroke: '#8eb3a6',
             'stroke-width': 8,
           },
         },
       },
     },
-    resizing: true,
-    rotating: true,
+    resizing: false,
+    rotating: false,
     selecting: {
       enabled: true,
-      rubberband: true,
-      showNodeSelectionBox: true,
+      className: 'my-selecting',
     },
     snapline: true,
     keyboard: true,
     clipboard: true,
     history: true,
+    panning: true,
+    allowRubberband: () => false,
   })
 // #endregion
 
@@ -168,7 +169,10 @@ onMounted(() => {
             refHeight: 1,
           },
           label:{
-            // refX: 70,
+            refX: '100%',
+            refX2: -16,
+            refY: 0.5,
+            textAnchor: 'end',
             textVerticalAnchor: 'middle',
           },
           image: {
@@ -276,23 +280,38 @@ onMounted(() => {
       ports[i].style.visibility = show ? 'visible' : 'hidden'
     }
   }
-  graph.on('node:mouseenter', () => {
-    const container = document.getElementById('graph-container')
-    const ports = container.querySelectorAll(
-        '.x6-port-body',
-    )
-    showPorts(ports, true)
+  graph.on('node:mouseenter', (e) => {
+    console.log('e',e.node.getPorts())
+    // const container = document.getElementById('graph-container')
+    // const ports = container.querySelectorAll(
+    //     '.x6-port-body',
+    // )
+    // showPorts(ports, true)
+    e.node.getPorts().forEach(item=>{
+      e.node.setPortProp(item.id, 'attrs/circle', { style: {
+          visibility: 'inherit',
+        }, })
+    })
+
   })
-  graph.on('node:mouseleave', () => {
-    const container = document.getElementById('graph-container')
-    const ports = container.querySelectorAll(
-        '.x6-port-body',
-    )
-    showPorts(ports, false)
+  graph.on('node:mouseleave', (e) => {
+    // const container = document.getElementById('graph-container')
+    // const ports = container.querySelectorAll(
+    //     '.x6-port-body',
+    // )
+    // showPorts(ports, false)
+    e.node.getPorts().forEach(item=>{
+      e.node.setPortProp(item.id, 'attrs/circle', {style: {
+          visibility: 'hidden',
+        }, })
+    })
+  })
+  graph.on('edge:change:arrowheadMarkup',r=>{
+    console.log('change:target',r)
   })
 
-  graph.on('node:click', ({ node, e }) => {
-    console.log('node:click',node)
+  graph.on('node:selected', ({ node, e }) => {
+    console.log('node:selected',node)
     selectModel.value = node
     state.formModel = {
       type:node.attrs.type,
@@ -570,5 +589,9 @@ const handleInput = (e)=>{
 }
 .x6-node.x6-node-immovable:hover {
   background-color: #ffffff;
+}
+.x6-widget-selection-selected{
+  background-color:#cbe5dc ;
+
 }
 </style>
