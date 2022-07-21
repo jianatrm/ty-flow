@@ -1,13 +1,11 @@
 <template>
 
   <div style="width: 1300px;height: 800px; margin: 40px auto">
-<!--    <ty-flow ref="tyFlow" :data="demoData" :height="800" :users="candidateUsers" :groups="candidateGroups" :categorys="categorys" :lang="lang" />-->
     <X6Flow></X6Flow>
   </div>
 </template>
 
 <script setup>
-import tyFlow from "./components/ty-flow.vue";
 import {reactive, toRefs} from "vue";
 import X6Flow from "./components/X6Flow.vue";
 
