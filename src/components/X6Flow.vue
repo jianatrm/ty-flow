@@ -91,13 +91,13 @@ onMounted(() => {
         args: {
           attrs: {
             fill: '#ffffff',
-            stroke: '#8eb3a6',
+            stroke: '#cbe5dc',
             'stroke-width': 8,
           },
         },
       },
     },
-    resizing: false,
+    resizing: true,
     rotating: false,
     selecting: {
       enabled: true,
@@ -157,6 +157,7 @@ onMounted(() => {
         height: 48,
         shape: 'rect',
         label: map[node.attrs.type].label,
+        data:{label: map[node.attrs.type].label,},
         attrs: {
           type:node.attrs.type,
           body: {
@@ -310,12 +311,13 @@ onMounted(() => {
     console.log('change:target',r)
   })
 
-  graph.on('node:selected', ({ node, e }) => {
+  graph.on('node:click', ({ node, e }) => {
     console.log('node:selected',node)
     selectModel.value = node
     state.formModel = {
       type:node.attrs.type,
-      text:node.attrs.text.text
+      text:node.attrs.text.text,
+      ...node.getData()
     }
   })
   graph.on('edge:click', ({ edge, e }) => {
