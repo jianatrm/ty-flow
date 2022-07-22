@@ -10,7 +10,9 @@
   "dependencies": {
     "@antv/g6": "^4.6.15",
     "@antv/x6": "^1.32.8",
-    "element-plus": "^2.2.9",
+    "@q/design": "^2.2.0",
+    "@q/icons-vue": "^2.0.1",
+    "lodash": "^4.17.21",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "vue": "^3.2.25",
